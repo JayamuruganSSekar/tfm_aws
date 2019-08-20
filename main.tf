@@ -45,7 +45,7 @@ EOF
 
 data "archive_file" "archieve" {
   type        = "zip"
-  source_file = "mylambda.py"
+  source_file = "${path.module}/mylambda.py"
   output_path = local.lambda_zip_path
 }
 
