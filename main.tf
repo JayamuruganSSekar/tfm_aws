@@ -40,18 +40,3 @@ resource "aws_iam_role_policy" "test_policy" {
 }
 EOF
 }
-
-data "archive_file" "archieve" {
-  type        = "zip"
-  source_file = "${path.module}/mylambda.py"
-  output_path = local.lambda_zip_path
-}
-
-resource "aws_lambda_function" "validate_lambda" {
-  filename         = local.lambda_zip_path
-  function_name    = "mylambda"
-  role             = aws_iam_role.lambda_role.arn
-  handler          = "mylambda.my_lambda"
-  source_code_hash = filebase64sha256(local.lambda_zip_path)
-  runtime          = "python3.7"
-}
