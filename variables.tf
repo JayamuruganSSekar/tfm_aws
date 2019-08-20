@@ -5,5 +5,5 @@ variable "access_key" { }
 variable "secret_key" { }
 
 locals {
-  lambda_zip_path = "mylambda.zip"
+  lambda_zip_path = "${path.module}/mylambda.zip"
  }
